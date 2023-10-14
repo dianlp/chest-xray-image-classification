@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block title %} Deteksi TBC - Data X-Ray {% endblock %}
+
+{% block body %}
+<main role="main">
+  <div class="container">
+    <div>
+      <h2 class="text-center">DETEKSI X-RAY</h2>
+      <p class="lead"> Unggah gambar X-Ray Dada dengan format JPEG/JPG/PNG dan untuk mengetahui hasil deteksinya bisa
+        tekan tombol <b>Deteksi X-ray</b>. Jika tidak punya gambar x-ray bisa menggunakan contoh gambar X-Ray yang telah
+        diketahui
+        hasilnya, contoh gambar ini digunakan untuk melakukan uji coba pada sistem ini, apakah bisa menampilkan hasil
+        yang sesuai dengan hasil sebenarnya.
+      </p>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4 offset-md-2">
+        <h5>UNGGAH GAMBAR :</h5>
+        <form action="{{ url_for('prediksi') }}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" name="my_image" class="custom-file-input" id="inputGroupFile01" required>
+              <label class="custom-file-label" for="inputGroupFile01">Pilih File</label>
+            </div>
+          </div>
+          <button type="submit" name="upload" value="upload" id="upload" class="btn btn-dark" style="width: 100%;">
+            Deteksi X-Ray
+          </button>
+        </form>
+        <br><br>
+      </div>
+      <div class="col-md-4 text-center" id="upload-box">
+        <div id="divImageMediaPreview">
+          <p style="padding-top: 45%;">Gambar X-Ray</p>
+        </div>
+      </div>
+    </div>
+    <hr><br>
+
+    <h4 class="text-center">CONTOH GAMBAR X-RAY </h4><br>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <a class="btn btn-primary" href="{{ url_for('analis', img='image.jpg') }}" role="button">Gambar X-Ray 1</a><br>
+        Hasil sebenarnya : TBC <br><br>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" href="{{ url_for('analis', img='image2.jpg') }}" role="button">Gambar X-Ray 2</a><br>
+        Hasil sebenarnya : TBC <br><br>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" href="{{ url_for('analis', img='image3.jpg') }}" role="button">Gambar
+          X-Ray 3</a><br>
+        Hasil sebenarnya : TBC <br><br>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" href="{{ url_for('analis', img='image-normal.jpg') }}" role="button">Gambar
+          X-Ray 4</a><br>
+        Hasil sebenarnya : Normal <br><br>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" href="{{ url_for('analis', img='image-normal2.png') }}" role="button">Gambar
+          X-Ray 5</a><br>
+        Hasil sebenarnya : Normal <br><br>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="container-fluid text-center">
+      <a href="#topPage" title="To Top">
+        <i class="fas fa-chevron-up"></i>
+      </a>
+      <p>© 2022 Copyright · Deteksi Tuberkulosis Menggunakan Citra X-Ray</p>
+    </div>
+  </footer>
+</main>
+
+{% endblock %}

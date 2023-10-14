@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block title %} Deteksi TBC - Hasil Analisis X-Ray {% endblock %}
+
+{% block body %}
+<main role="main" style="margin-bottom: 100px;">
+  <h2 class="text-center" style="padding-top: 80px;">HASIL DETEKSI</h2>
+  <hr>
+  <div style="padding: 10px 30px;">
+    {% if prediction %}
+    <div class="card-columns">
+      <div class="card text-center">
+        <div class="card-header">
+          <h5 class="card-title">Gambar Asli</h5>
+        </div>
+        <img class="card-img-bottom" src="{{ url_for('static', filename = pic) }}" height="400px" width="400px">
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          <h5 class="card-title">Setelah Preprocessing</h5>
+        </div>
+        <img class="card-img-bottom" src="data:;base64,{{eqhist}}" height="400px" width="400px">
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hasil :</h5>
+          <p class="card-text">Dari hasil analisis sistem, Gambar X-Ray terdeteksi <i>{{prob}}</i>% terindikasi
+            <b>{{prediction}}</b>.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent">
+          <div class="row justify-content-end">
+            <div class="col-auto">
+              <a class="btn btn-secondary" href="{{ url_for('deteksi') }}">Kembali</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {% elif predict %}
+    <form action="{{ url_for('ulang') }}" method="POST">
+      <div class="card-deck">
+
+        <div class="card text-center">
+          <div class="card-header">
+            <h5 class="card-title">Gambar Asli</h5>
+          </div>
+          <img class="card-img-bottom" src="{{ url_for('static', filename = img_path) }}" height="400px" width="400px">
+          <input type="hidden" name="gambar" value="{{img_path}}" />
+        </div>
+        <div class="card text-center">
+          <div class="card-header">
+            <h5 class="card-title">Setelah Preprocessing</h5>
+          </div>
+          <img class="card-img-bottom" src="data:;base64,{{eqhist}}" height="400px" width="400px">
+        </div>
+        <div class="card" style="width: 270px; height: 50%; ">
+          <div class="card-body">
+            <h5 class="card-title">Hasil :</h5>
+            <p class="card-text">Dari hasil analisis sistem, Gambar X-Ray terdeteksi <i>{{prob}}</i>% terindikasi
+              <b>{{predict}}</b>.
+            </p>
+
+          </div>
+          <div class="card-footer bg-transparent">
+            <div class="row justify-content-end">
+              <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Kembali</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+
+  </div>
+</main>
+<!-- /.container -->
+<footer>
+  <div class="container-fluid text-center">
+    <a href="#topPage" title="To Top">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+    <p>© 2022 Copyright · Deteksi Tuberkulosis Menggunakan Citra X-Ray</p>
+  </div>
+</footer>
+{% endblock %}
