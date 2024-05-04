@@ -6,8 +6,6 @@ Flask web application Image Classification with CNN to classify Chest X-ray imag
 2. Install Requirements ```pip install -r requirements.txt```
 3. To run the app on localhost run ```python app.py```
 
-## Web App
-Link : [Deteksi TBC](https://tbc-detect.up.railway.app/)
 
 ### Preview
 ![image](https://github.com/dianlp/chest-xray-image-classification/assets/63903262/26ed557b-7639-4cc3-83c7-0ca2686c750e)
